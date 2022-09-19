@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    
+    <script type="text/javascript">
+      
+      for (let i = 1; i <= 10; i++) {
+        if (i % 2 == 0) console.log(i);
+      }
+
+    </script>
+
+
+    <script type="text/javascript">
+      /*
+      for (let i = 0; i < 3; i++) {
+        alert( `number ${i}!` );
+      } 
+      */
+      let i = 0;
+
+      while (i < 3){
+        console.log(`number ${i}!`);
+        i++;
+      }
+    </script>
+
+    <script type="text/javascript">
+
+      while(true){
+        let value = prompt('enter value greater than 100', '');
+
+        if (value > 100 || !value) break;
+      }
+
+    </script>
+
+
+    <script type="text/javascript">
+      
+      for (let i = 2; i <= 20; i++) {
+        
+        let prime = true;
+
+        for (let j = 2; j < i; j++) {
+          
+          let reminder = i % j;
+
+          if (reminder == 0) {
+            prime = false;
+            break;
+          };
+        }
+
+        if (prime) console.log(i);
+      }
+
+    </script>
+
+  </body>
+</html>
