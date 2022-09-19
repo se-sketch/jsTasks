@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      let age = 14;
+
+      let flagInclusively = (age >= 14 && age <= 90);
+
+      console.log(flagInclusively);
+    </script>
+
+    <script type="text/javascript">
+      
+      let login = prompt('enter login', '');
+
+      if (login == 'Admin'){
+
+          let password = prompt('enter password', '');
+
+          if (password == 'TheMaster'){
+            console.log('Welcome');
+          }else if (password == '' || password == null){
+            console.log('Cancelled');
+          }else{
+            console.log('Wrong password');
+          }
+
+      }else if (login == '' || login == null){
+        console.log('Cancelled');
+      }else{
+        console.log('I don’t know you');
+      }
+
+    </script>
+  </body>
+</html>
