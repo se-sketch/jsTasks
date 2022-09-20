@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    
+    <script type="text/javascript">
+      
+      function checkAge(age) {
+
+        //return (age > 18) ? true : confirm('Did parents allow you?');
+
+        return (age > 18) || confirm('Dis parents allow you?');
+
+      }
+
+      let result = checkAge(19);
+
+      console.log(result);
+
+    </script>
+
+    <script type="text/javascript">
+      
+      function min(a, b){
+        return (a < b) ? a : b;
+      }
+      
+      console.log(min(3, -1)); //  == -1
+
+    </script>
+
+    <script type="text/javascript">
+
+      function pow(a, b){
+        return a ** b;
+      }
+      
+      console.log(pow(3, 2)); // = 3 * 3 = 9
+    </script>
+  </body>
+</html>

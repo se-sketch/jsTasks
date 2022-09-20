@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      function Calculator(){
+
+        this.read = function(){
+          this.a = +prompt('enter a: ', '');
+          this.b = +prompt('enter b: ', '');
+        }
+
+        this.sum = function(){
+          return this.a + this.b;
+        }
+
+        this.mul = function(){
+          return this.a * this.b;
+        }
+      }
+      
+      /*
+      let calculator = new Calculator();
+      calculator.read();
+      
+      console.log( "Sum=" + calculator.sum() );
+      console.log( "Mul=" + calculator.mul() );
+      */
+    </script>
+
+    <script type="text/javascript">
+
+      function Accumulator(startingValue){
+
+        this.value = startingValue;
+
+        this.read = function(){
+          this.value += +prompt('enter value: ', '');
+        }
+      }
+
+      let accumulator = new Accumulator(1); // initial value 1
+
+      accumulator.read(); // adds the user-entered value
+      accumulator.read(); // adds the user-entered value
+
+      console.log(accumulator.value); // shows the sum of these values
+    </script>
+  </body>
+</html>

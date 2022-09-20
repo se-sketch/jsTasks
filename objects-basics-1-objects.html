@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      
+      let user = {};
+
+      user.name = 'Jhon';
+
+      user.surname = 'Smith';
+
+      user.name = 'Pete';
+
+      delete user.name;
+
+      console.log(user);
+
+    </script>
+
+    <script type="text/javascript">
+
+      function isEmpty(obj){
+
+        for (let key in obj) return false;
+
+        return true;
+        
+        //return Object.keys(obj).length == 0;
+      }
+
+      let schedule = {};
+
+      console.log( isEmpty(schedule) ); // true
+
+      schedule["8:30"] = "get up";
+
+      console.log( isEmpty(schedule) ); // false
+    </script>
+
+    <script type="text/javascript">
+
+      function sum(obj){
+        let result = 0;
+        for(let key in salaries) result += obj[key]; 
+        return result;
+      }
+      
+      let salaries = {
+        John: 100,
+        Ann: 160,
+        Pete: 130
+      }
+
+      console.log(sum(salaries));
+
+    </script>
+
+    <script type="text/javascript">
+
+      function multiplyNumeric(menu){
+        for(let key in menu){
+          if (!isNaN(menu[key])) menu[key] *= 2;
+        }
+      }
+
+      // before the call
+      let menu = {
+        width: 200,
+        height: 300,
+        title: "My menu"
+      };
+
+      multiplyNumeric(menu);
+
+      console.log(menu);
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      
+      let calculator = {
+        
+        read(){
+          this.a = +prompt('enter value a: ', '');
+          this.b = +prompt('enter value b: ', '');
+        },
+        
+        mul(){
+          return this.a * this.b;
+        },
+
+        sum(){
+          return this.a + this.b;
+        },
+      };
+
+      calculator.read();
+      
+      console.log( calculator.sum() );
+      console.log( calculator.mul() );
+      
+      //console.log(calculator);
+
+    </script>
+
+    <script type="text/javascript">
+      
+      let ladder = {
+        step: 0,
+        up() {
+          this.step++;
+          return this;
+        },
+        down() {
+          this.step--;
+          return this;
+        },
+        showStep: function() { // shows the current step
+          console.log( this.step );
+          return this;
+        }
+      };
+
+      ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
+
+    </script>
+  </body>
+</html>
