@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      function ucFirst(str){
+        if (!str) return str;
+        return str[0].toUpperCase() + str.slice(1);
+      }
+
+      console.log(ucFirst("john")); // == "John";
+    </script>
+
+    <script type="text/javascript">
+      function checkSpam(str){
+        let test = str.toLowerCase();
+
+        return test.includes('viagra') || test.includes('xxx');
+      }
+
+      console.log(checkSpam('buy ViAgRA now')); // == true
+      console.log(checkSpam('free xxxxx')); // == true
+      console.log(checkSpam("innocent rabbit")); // == false
+    </script>
+
+    <script type="text/javascript">
+
+      function truncate(str, maxlength){
+        return (str.length > maxlength) ? str.slice(0, maxlength - 1) + '...' : str;
+      }
+
+      console.log(truncate("What I'd like to tell on this topic is:", 20)); // = "What I'd like to te…"
+
+      console.log(truncate("Hi everyone!", 20)); // = "Hi everyone!"      
+    </script>
+
+    <script type="text/javascript">
+      function extractCurrencyValue(str){
+        return + str.slice(1);
+      }
+      console.log(extractCurrencyValue('$120')); //  === 120  // true
+    </script>
+  </body>
+</html>
