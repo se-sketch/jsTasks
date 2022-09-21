@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      function unique(arr) {
+        return Array.from(new Set(arr));
+      }
+
+      let values = ["Hare", "Krishna", "Hare", "Krishna",
+        "Krishna", "Krishna", "Hare", "Hare", ":-O"
+      ];
+
+      console.log( unique(values) ); // Hare, Krishna, :-O
+    </script>
+
+    <script type="text/javascript">
+      function aclean(arr){
+        let map = new Map();
+
+        for(let item of arr){
+          let key = item.toLowerCase().split('').sort().join('');
+          map.set(key, item);
+        }
+        //console.log(map.values());
+        return Array.from(map.values());
+      }
+
+      arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+      console.log( aclean(arr) ); // "nap,teachers,ear" or "PAN,cheaters,era"      
+    </script>
+
+    <script type="text/javascript">
+      let map = new Map();
+
+      map.set("name", "John");
+
+      let keys = Array.from(map.keys());
+
+      keys.push("more");
+
+      console.log(keys);
+    </script>
+  </body>
+</html>

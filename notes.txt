@@ -8,4 +8,12 @@ Create keyed object from array
 
 ;
 
+https://javascript.info/map-set
+data-types-7-map-and-set.html
+
+Filter unique array members
+Filter anagrams
+
+
+;
 
