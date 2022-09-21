@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+            
+      let fruits = ["Apples", "Pear", "Orange"];
+
+      // push a new value into the "copy"
+      let shoppingCart = fruits;
+      shoppingCart.push("Banana");
+
+      // what's in fruits?
+      console.log( fruits.length ); // ?
+      console.log(shoppingCart);
+
+    </script>
+
+    <script type="text/javascript">
+      
+      let styles = ['Jazz', 'Blues'];
+
+      styles.push('Rock-n-roll');
+
+      styles[Math.floor((styles.length - 1) / 2)] = 'Classics';
+
+      let elem = styles.shift();
+
+      console.log(elem);
+
+      styles.unshift('Rap', 'Ragee');
+
+      console.log(styles);
+
+    </script>
+
+    <script type="text/javascript">
+      let arr = ["a", "b"];
+
+      arr.push(function() {
+        console.log( this );
+        //alert( this );
+      });
+
+      arr[2](); // ?      
+    </script>
+
+    <script type="text/javascript">
+      function sumInput(){
+        let arrValues = [];
+        
+        while (true){
+          let value = prompt('enter value', '');
+
+          if (value == '' || value == null || isNaN(value)) break;
+
+          arrValues.push(+value);
+        }
+
+        let sum = 0;
+
+        for (let i = 0; i < arrValues.length; i++) {
+          sum += arrValues[i];
+        }
+        return sum;
+      }
+
+      console.log(sumInput());
+
+    </script>
+
+
+    <script type="text/javascript">
+
+      function getMaxSubSum(arr){
+
+        let maxSum = 0;
+        let curSum = 0;
+
+        for(let item of arr){
+          curSum += item;
+
+          if (curSum < 0) curSum = 0;
+
+          if (curSum > maxSum) maxSum = curSum;
+        }
+
+        return maxSum;
+      }
+
+      console.log('---');
+      console.log(getMaxSubSum([-1, 2, 3, -9])); // == 5 (the sum of highlighted items)
+      console.log(getMaxSubSum([2, -1, 2, 3, -9])); // == 6
+      console.log(getMaxSubSum([-1, 2, 3, -9, 11])); // == 11
+      console.log(getMaxSubSum([-2, -1, 1, 2])); // == 3
+      console.log(getMaxSubSum([100, -9, 2, -3, 5])); // == 100
+      console.log(getMaxSubSum([1, 2, 3])); // == 6 (take all)      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      function camelize(str){
+        return str.split('-')
+          .map(
+            (item, index) => (index == 0) ? item : item.charAt(0).toUpperCase() + item.slice(1)
+          ).join('');
+      }
+
+      console.log(camelize("background-color")); // == 'backgroundColor';
+      console.log(camelize("list-style-image")); // == 'listStyleImage';
+      console.log(camelize("-webkit-transition")); // == 'WebkitTransition';
+    </script>
+
+    <script type="text/javascript">
+
+      function filterRange(arr, a, b){
+        return arr.filter(item => item >= a && item <= b);
+      }
+      
+      let arr = [5, 3, 8, 1];
+
+      let filtered = filterRange(arr, 1, 4);
+
+      console.log( filtered ); // 3,1 (matching values)
+
+      console.log( arr ); // 5,3,8,1 (not modified)
+
+    </script>
+
+    <script type="text/javascript">
+
+      function filterRangeInPlace(arr, a, b){
+        for (let i = arr.length - 1; i >= 0; i--) {
+          if (!(a <= arr[i] && b >= arr[i])) arr.splice(i, 1);
+        }
+      }
+
+      arr = [5, 3, 8, 1];
+
+      filterRangeInPlace(arr, 1, 4); // removed the numbers except from 1 to 4
+
+      console.log( arr ); // [3, 1]
+    </script>
+
+    <script type="text/javascript">
+      arr = [5, 2, 1, -10, 8];
+
+      // ... your code to sort it in decreasing order
+      arr.sort((a, b) =>  b - a);
+
+      console.log( arr ); // 8, 5, 2, 1, -10
+    </script>
+
+    <script type="text/javascript">
+      function copySorted(arr){
+        return arr.slice().sort();
+      }
+
+      arr = ["HTML", "JavaScript", "CSS"];
+
+      let sorted = copySorted(arr);
+
+      console.log( sorted ); // CSS, HTML, JavaScript
+      console.log( arr ); // HTML, JavaScript, CSS (no changes)
+    </script>
+
+    <script type="text/javascript">
+
+      function Calculator(){
+
+        this.method = {
+          '+' : (a, b) => a + b,
+          '-' : (a, b) => a - b,
+        };
+
+        this.calculate = function(str){
+          console.log(str);
+          let arr = str.split(' ');
+
+          let a = +arr[0];
+          let op = arr[1];
+          let b = +arr[2];
+
+          if (!this.method[op] || isNaN(a) || isNaN(b)) return NaN;
+
+          return this.method[op](a, b);
+        }
+
+        this.addMethod = function(name, func){
+          this.method[name] = func;
+        }
+      }
+
+      let calc = new Calculator;
+
+      console.log( calc.calculate("3 + 7") ); // 10
+
+      calc.addMethod("*", (a, b) => a * b);
+      calc.addMethod("/", (a, b) => a / b);
+      calc.addMethod("**", (a, b) => a ** b);
+
+      let result = calc.calculate("2 ** 3");
+      console.log( result ); // 8
+
+      console.log(calc.calculate("2 * 3"));
+      console.log(calc.calculate("2 / 3"));
+
+    </script>
+
+    <script type="text/javascript">
+
+      let john = { name: "John", age: 25 };
+      let pete = { name: "Pete", age: 30 };
+      let mary = { name: "Mary", age: 28 };
+
+      let users = [ john, pete, mary ];
+
+      let names = users.map(item => item.name);
+
+      console.log( names ); // John, Pete, Mary
+    </script>
+
+    <script type="text/javascript">
+            
+      john = { name: "John", surname: "Smith", id: 1 };
+      pete = { name: "Pete", surname: "Hunt", id: 2 };
+      mary = { name: "Mary", surname: "Key", id: 3 };
+
+      users = [ john, pete, mary ];
+
+      let usersMapped = users.map(item => ({        
+          'fullName' : `${item.name} ${item.surname}`,
+          'id' : item.id,
+        })
+      );
+
+      /*
+      usersMapped = [
+        { fullName: "John Smith", id: 1 },
+        { fullName: "Pete Hunt", id: 2 },
+        { fullName: "Mary Key", id: 3 }
+      ]
+      */
+
+      console.log( usersMapped[0].id ) // 1
+      console.log( usersMapped[0].fullName ) // John Smith      
+
+      console.log(usersMapped);
+    </script>
+
+    <script type="text/javascript">
+      function sortByAge(arr){
+        arr.sort((itemA, itemB) =>  itemA.age - itemB.age);
+      }
+
+      john = { name: "John", age: 25 };
+      pete = { name: "Pete", age: 30 };
+      mary = { name: "Mary", age: 28 };
+
+      arr = [ pete, john, mary ];
+
+      //console.log(arr);
+
+      sortByAge(arr);
+
+      // now: [john, mary, pete]
+      console.log(arr[0].name); // John
+      console.log(arr[1].name); // Mary
+      console.log(arr[2].name); // Pete      
+      
+    </script>
+
+    <script type="text/javascript">
+
+      /*
+      function shuffle(arr){
+        arr.sort(() => Math.random() - 0.5);
+      }
+      */
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+      }      
+      arr = [1, 2, 3];
+      
+      shuffle(arr);
+      console.log(arr);
+      shuffle(arr);
+      console.log(arr);
+      shuffle(arr);
+      console.log(arr);
+
+
+      // counts of appearances for all possible permutations
+      let count = {
+        '123': 0,
+        '132': 0,
+        '213': 0,
+        '231': 0,
+        '321': 0,
+        '312': 0
+      };
+
+      for (let i = 0; i < 1000000; i++) {
+        let array = [1, 2, 3];
+        shuffle(array);
+        count[array.join('')]++;
+      }
+
+      // show counts of all possible permutations
+      for (let key in count) {
+        console.log(`${key}: ${count[key]}`);
+      }      
+    </script>
+
+    <script type="text/javascript">
+
+      function getAverageAge(arr){
+        if (!arr.length) return 0;
+
+        let value = arr.reduce((accumulator, item) => {
+          return accumulator + item.age;
+        }, 0);
+
+        return Math.round(value / arr.length);
+      }
+
+      john = { name: "John", age: 27 };
+      pete = { name: "Pete", age: 30 };
+      mary = { name: "Mary", age: 29 };
+
+      arr = [ john, pete, mary ];
+
+      console.log( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
+    </script>
+
+    <script type="text/javascript">
+      function unique(arr) {
+        let result = [];
+
+        for (let item of arr) {
+          if (!result.includes(item)) result.push(item); 
+        }
+        return result;
+      }
+
+      let strings = ["Hare", "Krishna", "Hare", "Krishna",
+        "Krishna", "Krishna", "Hare", "Hare", ":-O"
+      ];
+
+      console.log( unique(strings) ); // Hare, Krishna, :-O
+    </script>
+
+    <script type="text/javascript">
+
+      /*
+      function groupById(users){
+        let result = {};
+
+        for(let item of users){
+          result[item.id] = {
+            'id' : item.id,
+            'name' : item.name,
+            'age' : item.age,
+          };
+        }
+        return result;
+      }
+      */
+
+      function groupById(users){
+        return users.reduce(function(accumulator, item) {
+          accumulator[item.id] = item;
+          return accumulator;
+        }, {});
+      }
+
+      users = [
+        {id: 'john', name: "John Smith", age: 20},
+        {id: 'ann', name: "Ann Smith", age: 24},
+        {id: 'pete', name: "Pete Peterson", age: 31},
+      ];
+
+      let usersById = groupById(users);
+
+      console.log(usersById);
+
+      /*
+      // after the call we should have:
+
+      usersById = {
+        john: {id: 'john', name: "John Smith", age: 20},
+        ann: {id: 'ann', name: "Ann Smith", age: 24},
+        pete: {id: 'pete', name: "Pete Peterson", age: 31},
+      }
+      */
+
+
+    </script>
+  </body>
+</html>

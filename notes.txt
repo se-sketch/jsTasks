@@ -1,0 +1,11 @@
+https://javascript.info/array-methods
+data-types-5-array-methods
+
+Calculator
+Map to Objects
+Shuffle an array
+Create keyed object from array
+
+;
+
+
