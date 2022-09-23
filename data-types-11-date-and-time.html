@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      // Feb 20, 2012, 3:12am.
+
+      let date = new Date(2012, 1, 20, 3, 12);
+
+      console.log(date);
+
+    </script>
+
+    <script type="text/javascript">
+
+      function getWeekDay(date){
+          let days = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+          return days[date.getDay()];
+        }
+
+      date = new Date(2012, 0, 3);  // 3 Jan 2012
+      console.log( getWeekDay(date) );        // should output "TU"
+    </script>
+
+    <script type="text/javascript">
+      function getLocalDay(date){
+        let locDay = date.getDay();
+
+        if (locDay == 0) locDay = 7;
+
+        return locDay;
+      }
+
+      date = new Date(2012, 0, 3);  // 3 Jan 2012
+      console.log( getLocalDay(date) );       // tuesday, should show 2      
+    </script>
+
+    <script type="text/javascript">
+
+      function getDateAgo(date, days){
+        let copyDate = new Date(date);
+        copyDate.setDate(copyDate.getDate() - days);
+        return copyDate.getDate();
+      }
+      
+      date = new Date(2015, 0, 2);
+
+      console.log( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
+      console.log( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
+      console.log( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
+    </script>
+
+    <script type="text/javascript">
+      function getLastDayOfMonth(year, month){
+        return new Date(year, month+1, 0).getDate();
+      }
+
+      console.log(getLastDayOfMonth(2012, 1));
+    </script>
+
+    <script type="text/javascript">
+      function getSecondsToday(){
+        let date = new Date();
+        let today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        let diff = date - today;
+        return Math.round(diff / 1000);
+
+        //return 3600 * date.getHours() + 60 * date.getMinutes() + date.getSeconds();
+      }
+
+      console.log(getSecondsToday());
+    </script>
+
+
+    <script type="text/javascript">
+      function getSecondsToTomorrow(){
+        let date = new Date();
+        let tomorrow = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+        let diff = tomorrow - date;
+        return Math.round(diff / 1000);
+      }
+
+      console.log(getSecondsToTomorrow());
+    </script>
+
+    <script type="text/javascript">
+
+      function addZero(str){
+        return `00${str}`.slice(-2);
+      }
+
+      function formatDate(date){
+        let now = new Date();
+        let diffSeconds = Math.round((now - date) / 1000);
+        let minutes = Math.round(diffSeconds/60);
+
+        if (diffSeconds < 1) return 'right now';
+        if (diffSeconds < 60) return `${diffSeconds} sec. ago`;
+        if (diffSeconds < 3600) return `${minutes} min. ago`;
+
+        //"DD.MM.YY HH:mm"
+
+        let year = addZero(date.getFullYear());
+        let month = addZero(date.getMonth() + 1);
+        let day = addZero(date.getDate());
+        let hours = addZero(date.getHours());
+        minutes = addZero(date.getMinutes());
+
+        return `${day}.${month}.${year} ${hours}:${minutes}`;
+      }
+
+      console.log( formatDate(new Date(new Date - 1)) ); // "right now"
+
+      console.log( formatDate(new Date(new Date - 30 * 1000)) ); // "30 sec. ago"
+
+      console.log( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 min. ago"
+
+      // yesterday's date like 31.12.16 20:00
+      console.log( formatDate(new Date(new Date - 86400 * 1000)) );      
+    </script>
+  </body>
+</html>

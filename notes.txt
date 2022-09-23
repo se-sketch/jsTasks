@@ -17,3 +17,34 @@ Filter anagrams
 
 ;
 
+https://javascript.info/weakmap-weakset
+data-types-8-weakmap-weakset.html
+
+Store "unread" flags
+Store read dates
+
+;
+
+https://javascript.info/keys-values-entries
+data-types-9-object-keys-values-entries.html
+
+Sum the properties
+
+;
+
+https://javascript.info/destructuring-assignment
+data-types-10-destructuring-assignment.html
+
+Destructuring assignment
+
+;
+
+https://javascript.info/date
+data-types-11-date-and-time.html
+
+Which day of month was many days ago?
+
+;
+
+
+

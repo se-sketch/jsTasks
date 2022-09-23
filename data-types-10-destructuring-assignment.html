@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      let user = { name: "John", years: 30 };
+
+      // your code to the left side:
+      // ... = user
+
+      let {name, years : age, isAdmin = false} = user;
+
+      console.log( name ); // John
+      console.log( age ); // 30
+      console.log( isAdmin ); // false
+      
+    </script>
+
+    <script type="text/javascript">
+
+      function topSalary(salaries){
+        let name;
+        let maxSalarie = 0;
+
+        for(let [key, value] of Object.entries(salaries)){
+          if (value > maxSalarie) {
+           maxSalarie = value;
+           name = key;
+         }
+        }        
+        return name;
+      }
+
+      let salaries = {
+        "John": 100,
+        "Pete": 300,
+        "Mary": 250
+      };
+
+      console.log(topSalary(salaries));
+
+      //console.log(`${name} ${maxSalarie}`);
+    </script>
+  </body>
+</html>

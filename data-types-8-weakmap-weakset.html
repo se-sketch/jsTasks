@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      
+      let messages = [
+        {text: "Hello", from: "John"},
+        {text: "How goes?", from: "John"},
+        {text: "See you soon", from: "Alice"}
+      ];
+
+      let readMessages = new WeakSet();
+
+      readMessages.add(messages[0]);
+      readMessages.add(messages[1]);
+
+      readMessages.add(messages[0]);
+
+      //console.log(readMessages.has(messages[0]));
+
+      messages.shift();
+
+      console.log(readMessages);
+
+      //------------
+
+      let readMap = new Map();
+      readMap.set(messages[0], new Date);
+
+      console.log(readMap);
+
+    </script>
+  </body>
+</html>
