@@ -46,5 +46,31 @@ Which day of month was many days ago?
 
 ;
 
+https://javascript.info/json
+data-types-11-json-methods.html
+
+Exclude backreferences
+
+;
+
+https://javascript.info/closure
+
+Function in if
+Filter through function
+Sort by field
+Army of functions
+
+;
+
+file:///home/serg/GitHub/jsTasks/advanced-functions-6-function-object.html
+advanced-functions-6-function-object.html
+
+Set and decrease for counter
+Sum with an arbitrary amount of brackets
+
+;
+
+https://javascript.info/settimeout-setinterval
+advanced-functions-8-settimeout-setinterval.html
 
 

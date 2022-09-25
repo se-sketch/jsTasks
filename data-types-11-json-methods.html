@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      /*
+JSON.stringify to convert objects into JSON.
+JSON.parse to convert JSON back into an object.      
+      */
+
+      let user = {
+        name: "John Smith",
+        age: 35
+      };
+
+      let userJson = JSON.stringify(user);
+      console.log(userJson);
+
+      let user2 = JSON.parse(userJson);
+      console.log(user2);
+
+    </script>
+
+    <script type="text/javascript">
+      let room = {
+        number: 23
+      };
+
+      let meetup = {
+        title: "Conference",
+        occupiedBy: [{name: "John"}, {name: "Alice"}],
+        place: room
+      };
+
+      // circular references
+      room.occupiedBy = meetup;
+      meetup.self = meetup;
+
+      console.log( JSON.stringify(meetup, function replacer(key, value) {
+        
+        return (key != "" && value == meetup) ? undefined : value;
+
+      }));
+
+      /* result should be:
+      {
+        "title":"Conference",
+        "occupiedBy":[{"name":"John"},{"name":"Alice"}],
+        "place":{"number":23}
+      }
+      */      
+    </script>
+  </body>
+</html>

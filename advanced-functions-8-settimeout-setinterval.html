@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      
+      /*
+      function printNumbers(from, to){
+        let curr = from;
+
+        let timerId = setTimeout(function tick() {
+          console.log(curr);
+          curr++;
+          if (curr < to) timerId = setTimeout(tick, 1000); // (*)
+        }, 1000);
+      }
+      */
+      function printNumbers(from, to){
+        let curr = from;
+
+        let timerId = setInterval(function(){
+          console.log(curr);
+          curr++;
+          if (curr >= to) clearInterval(timerId);
+        }, 1000);
+      }
+
+      printNumbers(7, 15);
+
+    </script>
+  </body>
+</html>
