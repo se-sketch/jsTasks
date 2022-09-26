@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      function slow(x){
+        return x;
+      }
+
+      function cachingDecorator(func){
+        let cache = new Map();
+
+        return function(x){
+          if (cache.has(x)) return cache.get(x);
+
+          let result = func(x);
+          cache.set(x, result);
+
+          return result;
+        }
+      }
+
+      slow = cachingDecorator(slow);
+
+      console.log( slow(1) ); // slow(1) is cached and the result returned
+      console.log( "Again: " + slow(1) ); // slow(1) result returned from cache
+
+      console.log( slow(2) ); // slow(2) is cached and the result returned
+      console.log( "Again: " + slow(2) ); // slow(2) result returned from cache      
+    </script>
+
+
+    <!-- Tasks -->
+
+    <script type="text/javascript">
+      function work(a, b) {
+        return a + b;
+      }
+
+      function spy(func){
+        function wrapper(...args){
+          wrapper.calls.push(args);
+          return func.apply(this, args);
+        }
+        wrapper.calls = [];
+        return wrapper;
+      }
+
+      work = spy(work);
+
+      console.log(work(1, 2)); // 3
+      console.log(work(4, 5)); // 9
+
+      for (let args of work.calls) {
+        console.log( 'call:' + args.join() ); // "call:1,2", "call:4,5"
+      } 
+           
+    </script>
+
+    <script type="text/javascript">
+      function f(x) {
+        console.log(x);
+      }
+
+      function delay(f, ms){
+        return function(){
+          setTimeout(() => f.apply(this, arguments), ms);
+        }
+      }
+
+      // create wrappers
+      let f1000 = delay(f, 1000);
+      let f1500 = delay(f, 1500);
+
+      f1000("test"); // shows "test" after 1000ms
+      f1500("test"); // shows "test" after 1500ms      
+    </script>
+
+
+    <script type="text/javascript">
+      function debounce(func, ms) {
+        let timeout;
+        return function() {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(this, arguments), ms);
+        };
+      }
+    </script>
+  </body>
+</html>

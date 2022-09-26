@@ -73,4 +73,13 @@ Sum with an arbitrary amount of brackets
 https://javascript.info/settimeout-setinterval
 advanced-functions-8-settimeout-setinterval.html
 
+;
+https://javascript.info/call-apply-decorators
+advanced-functions-9-call-apply-decorators.html
 
+Spy decorator
+Delaying decorator
+Debounce decorator
+Throttle decorator
+
+;
