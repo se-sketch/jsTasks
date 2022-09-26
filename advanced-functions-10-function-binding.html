@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      function askPassword(ok, fail) {
+        let password = prompt("Password?", '');
+        if (password == "rockstar") ok();
+        else fail();
+      }
+
+      let user = {
+        name: 'John',
+
+        loginOk() {
+          console.log(`${this.name} logged in`);
+        },
+
+        loginFail() {
+          console.log(`${this.name} failed to log in`);
+        },
+
+      };
+
+      askPassword(user.loginOk, user.loginFail);      
+    </script>
+  </body>
+</html>

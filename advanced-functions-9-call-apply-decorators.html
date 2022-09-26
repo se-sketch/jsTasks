@@ -92,5 +92,49 @@
         };
       }
     </script>
+
+    <script type="text/javascript">
+      function f(a) {
+        console.log(a);
+      }
+
+      function throttle(func, ms){
+        let isThrottled = false,
+          savedArgs,
+          savedThis;
+
+        function wrapper(){
+          if (isThrottled){
+            savedArgs = arguments;
+            savedThis = this;
+            return;
+          }
+
+          isThrottled = true;
+          func.apply(this, arguments);
+
+          setTimeout(function(){
+            isThrottled = false;
+            if (savedArgs){
+              wrapper.apply(savedThis, savedArgs);
+              savedThis = savedArgs = null;
+            }
+          }, ms);
+        }
+        return wrapper;
+      }
+
+      console.log('----throttle----');
+
+      // ff1000 passes calls to f at maximum once per 1000 ms
+      let ff1000 = throttle(f, 1000);
+
+      ff1000(1); // shows 1
+      ff1000(2); // (throttling, 1000ms not out yet)
+      ff1000(3); // (throttling, 1000ms not out yet)
+
+      // when 1000 ms time out...
+      // ...outputs 3, intermediate value 2 was ignored      
+    </script>
   </body>
 </html>
