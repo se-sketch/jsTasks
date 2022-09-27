@@ -83,3 +83,27 @@ Debounce decorator
 Throttle decorator
 
 ;
+
+https://javascript.info/prototype-inheritance
+prototypes-1-prototype-inheritance.html
+
+Why are both hamsters full?
+
+;
+
+https://javascript.info/function-prototype
+
+Create an object with the same constructor
+
+;
+
+https://javascript.info/native-prototypes
+prototypes-3-native-prototypes.html
+
+Add method "f.defer(ms)" to functions
+Add the decorating "defer()" to functions
+
+
+;
+
+
