@@ -8,13 +8,20 @@
 
   <body>
     <script type="text/javascript">
-      let dictionary = Object.create(null);
+      let dictionary = Object.create(null, {
+        toString : {
+          value(){
+            return Object.keys(this).join();
+          }
+        }
+      });
 
       // your code to add dictionary.toString method
-
+      /*
       dictionary.toString = function(){
-        
+        return Object.keys(this);
       }
+      */
 
       // add some data
       dictionary.apple = "Apple";
@@ -27,6 +34,22 @@
 
       // your toString in action
       console.log(dictionary); // "apple,__proto__"
+    </script>
+
+    <script type="text/javascript">
+      function Rabbit(name) {
+        this.name = name;
+      }
+      Rabbit.prototype.sayHi = function() {
+        console.log( this.name );
+      }
+
+      let rabbit = new Rabbit("Rabbit");
+
+      rabbit.sayHi();                        // Rabbit
+      Rabbit.prototype.sayHi();              // undefined
+      Object.getPrototypeOf(rabbit).sayHi(); // undefined
+      rabbit.__proto__.sayHi();              // undefined      
     </script>
   </body>
 </html>

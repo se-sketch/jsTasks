@@ -106,4 +106,20 @@ Add the decorating "defer()" to functions
 
 ;
 
+https://javascript.info/prototype-methods
+prototypes-4-prototype-methods.html
+
+Add toString to the dictionary
+The difference between calls
+
+;
+
+https://javascript.info/class
+classes-1-class-basic-syntax.html
+
+Rewrite to class
+
+;
+
+
 
