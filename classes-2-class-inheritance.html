@@ -63,22 +63,20 @@
       }
 
       class ExtendedClock extends Clock{
-        precision = 1000;
-
-        constructor({ template }) {
-          super({template});
+        constructor(options) {
+          super(options);
+          let {precision = 1000} = options;
+          this.precision = precision;
         }
 
-        start(precision){
-          precision = precision ?? this.precision;
-
+        start(){
           this.render();
-          this.timer = setInterval(() => this.render(), precision);
+          this.timer = setInterval(() => this.render(), this.precision);
         }
       }
 
-      let clock = new ExtendedClock({template: 'h:m:s'});
-      clock.start(2000);
+      let clock = new ExtendedClock({template: 'h:m:s', precision : 2000});
+      clock.start();
 
     </script>
   </body>

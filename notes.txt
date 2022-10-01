@@ -121,5 +121,12 @@ Rewrite to class
 
 ;
 
+https://javascript.info/class-inheritance
+classes-2-class-inheritance.html
+
+Extended clock
+
+;
+
 
 
