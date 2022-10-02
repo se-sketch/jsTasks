@@ -128,5 +128,12 @@ Extended clock
 
 ;
 
+https://javascript.info/promise-basics#tasks
+promises-async-2-promise.html
+
+Delay with a promise
+Animated circle with promise
+
+;
 
 

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      function delay(ms) {
+        return new Promise(resolve => setTimeout(() => resolve(), ms));
+      }
+
+      delay(3000).then(() => console.log('runs after 3 seconds'));
+    </script>
+  </body>
+</html>
