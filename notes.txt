@@ -136,4 +136,25 @@ Animated circle with promise
 
 ;
 
+https://javascript.info/promise-chaining#tasks
+
+Promise: then versus catch
+
+;
+
+https://javascript.info/promise-error-handling#tasks
+
+Error in setTimeout
+
+;
+
+https://javascript.info/async-await
+promises-async-8-async-await.html
+
+Rewrite using async/await
+Rewrite "rethrow" with async/await
+Call async from non-async
+
+;
+
 
