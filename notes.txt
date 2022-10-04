@@ -157,4 +157,19 @@ Call async from non-async
 
 ;
 
+https://javascript.info/fetch#tasks
+fetch.html
+
+Fetch users from GitHub
+
+;
+
+https://javascript.info/basic-dom-node-properties
+
+Where's the "document" in the hierarchy?
+
+;
+
+
+
 

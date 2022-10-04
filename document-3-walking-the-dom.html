@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+
+      td {
+        border: 1px solid black;
+        padding: 3px 5px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div>Users:</div>
+    <ul>
+      <li>John</li>
+      <li>Pete</li>
+    </ul>    
+    <script type="text/javascript">
+      console.dir(document.querySelector('body div'));
+      console.dir(document.querySelector('body ul')); 
+      console.dir(document.querySelector('body div').nextElementSibling); 
+      console.dir(document.querySelector('body ul').lastElementChild); 
+      console.dir(document.querySelector('body ul').firstElementChild.nextElementSibling); 
+      console.dir(document.querySelector('body ul li').nextElementSibling); 
+      console.dir(document.querySelector('body ul').children[1]);  // .textContent
+    </script>
+
+
+
+   <table>
+      <tr>
+        <td>1:1</td>
+        <td>2:1</td>
+        <td>3:1</td>
+        <td>4:1</td>
+        <td>5:1</td>
+      </tr>
+      <tr>
+        <td>1:2</td>
+        <td>2:2</td>
+        <td>3:2</td>
+        <td>4:2</td>
+        <td>5:2</td>
+      </tr>
+      <tr>
+        <td>1:3</td>
+        <td>2:3</td>
+        <td>3:3</td>
+        <td>4:3</td>
+        <td>5:3</td>
+      </tr>
+      <tr>
+        <td>1:4</td>
+        <td>2:4</td>
+        <td>3:4</td>
+        <td>4:4</td>
+        <td>5:4</td>
+      </tr>
+      <tr>
+        <td>1:5</td>
+        <td>2:5</td>
+        <td>3:5</td>
+        <td>4:5</td>
+        <td>5:5</td>
+      </tr>
+
+      <tr>
+        <td>1:6</td>
+        <td>2:6</td>
+        <td>3:6</td>
+        <td>4:6</td>
+        <td>5:6</td>
+      </tr>
+
+    </table>
+
+    <script>
+      //let table = document.body.firstElementChild;
+
+      /*
+      let listTr = document.querySelectorAll('body table tr');
+
+      for(let i = 0; i < listTr.length; i++){
+        let tr = listTr[i];
+        if (i < tr.children.length){
+          let td = tr.children[i];
+          td.style.backgroundColor = 'red';
+        }
+      }
+      */
+      let table = document.querySelector('body table');
+
+      let i = 0;
+      for(let row of table.rows){
+        if (i >= row.cells.length) break;
+        row.cells[i].style.backgroundColor = 'red';
+        i++;
+      }
+    </script>
+
+
+  </body>
+    
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      async function getTextUrl(){
+        let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
+
+        //If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+
+        let text = await response.text(); // read response body as text
+        console.log(text);
+      }
+
+      //getTextUrl();
+    </script>
+
+    <script type="text/javascript">
+      /*
+      async function getUsers(names){
+        let url = 'https://api.github.com/users/'; // USERNAME
+
+        let arrProm = [];
+
+        for(let name of names){
+          arrProm.push(fetch(url + name));
+        }
+
+        Promise.all(arrProm).then((responses) => {
+
+          let users = [];
+
+          for(let response of responses){
+            let user = response.text();
+            users.push(user);
+          }
+
+          console.log(users);
+        });
+      }
+      */
+
+      async function getUsers(names){
+
+        let jobs = [];
+
+        for(let name of names){
+          let job = fetch(`https://api.github.com/users/${name}`).then(
+            successResponse => successResponse.status == 200 ? successResponse.json() : null, 
+            failResponse => null);
+
+          jobs.push(job);
+        }
+
+        let result = await Promise.all(jobs);
+        console.log(result);
+        return result;
+      }
+
+      names = ['greg', 'illia', 'mark', 'den', 'jhon', 'ilon', 'abra-cadabra'];
+
+      getUsers(names);
+
+    </script>
+  </body>
+</html>
