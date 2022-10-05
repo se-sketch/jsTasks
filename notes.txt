@@ -170,6 +170,19 @@ Where's the "document" in the hierarchy?
 
 ;
 
+https://javascript.info/dom-attributes-and-properties
+document-6-attributes-properties.html
+
+Make external links orange
+
+;
+
+https://javascript.info/modifying-document#summary
+document-7-modifying-document.html
+
+Sort the table
+
+;
 
 
 

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <div data-widget-name="menu">Choose the genre</div>
+
+    <script>
+      let elem = document.querySelector('[data-widget-name]');
+      console.log(elem.dataset.widgetName);
+    </script>   
+
+
+
+    <a name="list">the list</a>
+    <ul>
+      <li><a href="http://google.com">http://google.com</a></li>
+      <li><a href="/tutorial">/tutorial.html</a></li>
+      <li><a href="local/path">local/path</a></li>
+      <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+      <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+      <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+    </ul>
+
+
+    <script>
+      /*
+      Its href has :// in it
+      But doesn’t start with http://internal.com.
+      */
+
+      // setting style for a single link
+      /*
+      let links = document.querySelectorAll('a[href]');
+
+      for(let link of links){
+        let href = link.getAttribute('href');
+        if (href.includes('://') && !href.startsWith('http://internal.com')) link.style.color = 'orange';
+      }
+      */
+
+      let links = document.querySelectorAll('a[href*="://"]:not([href^="http://internal.com"])');
+
+      links.forEach(link => link.style.color = 'orange');
+      //links.forEach(link => console.log(link.getAttribute('href')));
+    </script>
+
+  </body>
+</html>

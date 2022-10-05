@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    <ul>
+    </ul>
+
+    <script type="text/javascript">
+      /*
+      let ul = document.querySelector('body>ul');
+      while(true){
+        let text = prompt('enter element content:', '');
+        if (!text) break;
+
+        let li = document.createElement('li');
+        li.textContent = text;
+        //ul.appendChild(li);
+        ul.append(li);
+      }
+      */
+    </script>
+
+
+    <div id="container"></div>
+
+    <script type="text/javascript">
+
+      function createTree(container, data){
+        if (!Object.keys(data).length) return;
+        
+        let ul = document.createElement('ul');
+        container.append(ul);
+
+        for(let [key, value] of Object.entries(data)){
+          let li = document.createElement('li');
+          li.textContent = key;
+          ul.append(li);
+          createTree(li, value);
+        }
+      }
+
+      let data = {
+        "Fish": {
+          "trout": {},
+          "salmon": {}
+        },
+
+        "Tree": {
+          "Huge": {
+            "sequoia": {},
+            "oak": {}
+          },
+          "Flowering": {
+            "apple tree": {},
+            "magnolia": {}
+          }
+        }
+      };
+
+      let container = document.getElementById('container');
+      createTree(container, data); // creates the tree in the container
+    </script>
+
+
+    <hr>
+
+    <ul id="descendants">
+      <li>Animals
+        <ul>
+          <li>Mammals
+            <ul>
+              <li>Cows</li>
+              <li>Donkeys</li>
+              <li>Dogs</li>
+              <li>Tigers</li>
+            </ul>
+          </li>
+          <li>Other
+            <ul>
+              <li>Snakes</li>
+              <li>Birds</li>
+              <li>Lizards</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Fishes
+        <ul>
+          <li>Aquarium
+            <ul>
+              <li>Guppy</li>
+              <li>Angelfish</li>
+            </ul>
+          </li>
+          <li>Sea
+            <ul>
+              <li>Sea trout</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <script>
+      let ul = document.querySelector('ul#descendants');
+      let listLi = ul.querySelectorAll('li');
+      for(let li of listLi){
+        let text = li.firstChild.textContent.trim();
+
+        let length = li.querySelectorAll('li').length;
+
+        if (length > 0) li.firstChild.textContent = text + '['+length+']';
+      }
+      
+    </script>    
+
+
+
+    <hr>
+
+    <div id="calendar"></div>
+
+    <style type="text/css">
+      table, th, td{
+        border: 1px solid;
+      }
+      table{
+        border-collapse: collapse;
+      }
+    </style>
+
+    <script type="text/javascript">
+
+      function createRow(data, flagTH){
+        let row = document.createElement('tr');  
+
+        for(let item of data){
+          let td;
+          if (flagTH){
+            td = document.createElement('th');
+          }else{
+            td = document.createElement('td');
+          }
+
+          td.textContent = item;
+          row.append(td);
+        }
+        return row;
+      }
+
+      function createCalendar(elem, year, month){
+        month--;
+
+        let date = new Date(year, month);
+
+        let title = document.createElement('h3');
+        title.innerText = date;
+        elem.append(title);
+
+        let table = document.createElement('table');
+        elem.append(table);
+
+        let dataRow = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+
+        let row = createRow(dataRow, true);
+        table.append(row);
+
+        let maxDay = new Date(year, month + 1, 0).getDate();
+
+        dataRow = ['', '', '', '', '', '', ''];
+        for(let i = 1; i <= maxDay; i++){
+          //0 (Sunday) to 6 (Saturday).
+          date = new Date(year, month, i);
+
+          let ind = date.getDay() == 0 ? 6 : date.getDay() - 1;
+
+          dataRow[ind] = date.getDate();
+
+          if (date.getDay() == 0 || i == maxDay){
+            row = createRow(dataRow, false);
+            table.append(row);
+            dataRow = ['', '', '', '', '', '', ''];
+          }
+        }
+      }
+
+      let cal = document.querySelector('div#calendar');
+      createCalendar(cal, 2012, 9);
+      //createCalendar(cal, 2022, 9);
+    </script>
+
+
+    <hr>
+
+    <style type="text/css">
+      div#clock>span.hour{
+        color: red;
+      }
+      div#clock>span.minutes{
+        color: green;
+      }
+      div#clock>span.seconds{
+        color: blue;
+      }
+    </style>
+
+    <div id="clock">
+      <span class="hour"></span>:
+      <span class="minutes"></span>:
+      <span class="seconds"></span>
+    </div>
+
+    <script type="text/javascript">
+      let timerId;
+
+      function clockStart(){
+        if (timerId) return;
+
+        function addZero(num){
+          let result = `0${num}`;
+          return result.slice(-2);
+        }
+
+        function updateClock(){
+          let date = new Date();
+
+          let hours = date.getHours();
+          let minutes = date.getMinutes();
+          let seconds = date.getSeconds();
+
+          let spanHours = document.querySelector('div#clock>span.hour');
+          spanHours.textContent = addZero(hours);
+
+          let spanMinutes = document.querySelector('div#clock>span.minutes');
+          spanMinutes.textContent = addZero(minutes);
+
+          let spanSeconds = document.querySelector('div#clock>span.seconds');
+          spanSeconds.textContent = addZero(seconds);
+        }
+
+        updateClock();
+
+        timerId = setInterval(updateClock, 1000);
+      }
+
+      function clockStop(){
+        clearInterval(timerId);
+        timerId = null;
+      }
+    </script>
+
+    <!-- click on this button calls clockStart() -->
+    <input type="button" onclick="clockStart()" value="Start">
+
+    <!-- click on this button calls clockStop() -->
+    <input type="button" onclick="clockStop()" value="Stop">
+
+
+    <hr>
+
+    <ul id="ul">
+      <li id="one">1</li>
+      <li id="two">4</li>
+    </ul>    
+
+    <script type="text/javascript">
+      let str = '<li>2</li><li>3</li>';
+
+      /*
+      let liOne = document.querySelector('ul#ul>li#one');
+      liOne.insertAdjacentHTML('afterend', str);
+      */
+      one.insertAdjacentHTML('afterend', str);
+    </script>
+
+    <hr>
+
+      <table id="sortingTable">
+      <thead>
+        <tr>
+          <th>Name</th><th>Surname</th><th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John</td><td>Smith</td><td>10</td>
+        </tr>
+        <tr>
+          <td>Pete</td><td>Brown</td><td>15</td>
+        </tr>
+        <tr>
+          <td>Ann</td><td>Lee</td><td>5</td>
+        </tr>
+        <tr>
+          <td>...</td><td>...</td><td>...</td>
+        </tr>
+      </tbody>
+      </table>
+
+      <script type="text/javascript">
+        let tbody = sortingTable.tBodies[0];
+
+        let listTr = tbody.querySelectorAll('tr');
+
+        //let arr = Array.from(listTr).sort((tra, trb) => tra.cells[0] > trb.cells[0] ? 1 : -1);
+        let arr = Array.from(listTr).sort((tra, trb) => 
+          tra.cells[0].innerHTML.localeCompare(trb.cells[0].innerHTML) );
+
+        /*
+        tbody.innerHTML = '';
+        arr.forEach(item => tbody.append(item));
+        */
+        tbody.append(...arr);
+      </script>
+
+  </body>
+</html>
