@@ -184,5 +184,18 @@ Sort the table
 
 ;
 
+https://javascript.info/styles-and-classes
+document-8-styles-classes.html
+
+Create a notification
+
+;
+
+https://javascript.info/size-and-scroll#tasks
+document-9-element-size-scroll.html
+
+all
+
+;
 
 

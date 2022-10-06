@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+
+
+  </head>
+
+  <body>
+
+    <button id="test">TEST</button>
+
+    <h2>Notification is on the right</h2>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum aspernatur quam ex eaque inventore quod voluptatem adipisci omnis nemo nulla fugit iste numquam ducimus cumque minima porro ea quidem maxime necessitatibus beatae labore soluta voluptatum
+      magnam consequatur sit laboriosam velit excepturi laborum sequi eos placeat et quia deleniti? Corrupti velit impedit autem et obcaecati fuga debitis nemo ratione iste veniam amet dicta hic ipsam unde cupiditate incidunt aut iure ipsum officiis soluta
+      temporibus. Tempore dicta ullam delectus numquam consectetur quisquam explicabo culpa excepturi placeat quo sequi molestias reprehenderit hic at nemo cumque voluptates quidem repellendus maiores unde earum molestiae ad.
+    </p>
+
+    <hr>
+
+    <h2>Notification is on the right</h2>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum aspernatur quam ex eaque inventore quod voluptatem adipisci omnis nemo nulla fugit iste numquam ducimus cumque minima porro ea quidem maxime necessitatibus beatae labore soluta voluptatum
+      magnam consequatur sit laboriosam velit excepturi laborum sequi eos placeat et quia deleniti? Corrupti velit impedit autem et obcaecati fuga debitis nemo ratione iste veniam amet dicta hic ipsam unde cupiditate incidunt aut iure ipsum officiis soluta
+      temporibus. Tempore dicta ullam delectus numquam consectetur quisquam explicabo culpa excepturi placeat quo sequi molestias reprehenderit hic at nemo cumque voluptates quidem repellendus maiores unde earum molestiae ad.
+    </p>
+
+    <hr>  
+
+    <h2>Notification is on the right</h2>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum aspernatur quam ex eaque inventore quod voluptatem adipisci omnis nemo nulla fugit iste numquam ducimus cumque minima porro ea quidem maxime necessitatibus beatae labore soluta voluptatum
+      magnam consequatur sit laboriosam velit excepturi laborum sequi eos placeat et quia deleniti? Corrupti velit impedit autem et obcaecati fuga debitis nemo ratione iste veniam amet dicta hic ipsam unde cupiditate incidunt aut iure ipsum officiis soluta
+      temporibus. Tempore dicta ullam delectus numquam consectetur quisquam explicabo culpa excepturi placeat quo sequi molestias reprehenderit hic at nemo cumque voluptates quidem repellendus maiores unde earum molestiae ad.
+    </p>
+
+    <hr>
+
+    <h2>Notification is on the right</h2>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum aspernatur quam ex eaque inventore quod voluptatem adipisci omnis nemo nulla fugit iste numquam ducimus cumque minima porro ea quidem maxime necessitatibus beatae labore soluta voluptatum
+      magnam consequatur sit laboriosam velit excepturi laborum sequi eos placeat et quia deleniti? Corrupti velit impedit autem et obcaecati fuga debitis nemo ratione iste veniam amet dicta hic ipsam unde cupiditate incidunt aut iure ipsum officiis soluta
+      temporibus. Tempore dicta ullam delectus numquam consectetur quisquam explicabo culpa excepturi placeat quo sequi molestias reprehenderit hic at nemo cumque voluptates quidem repellendus maiores unde earum molestiae ad.
+    </p>
+
+    <hr>
+
+    <h2>Notification is on the right</h2>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum aspernatur quam ex eaque inventore quod voluptatem adipisci omnis nemo nulla fugit iste numquam ducimus cumque minima porro ea quidem maxime necessitatibus beatae labore soluta voluptatum
+      magnam consequatur sit laboriosam velit excepturi laborum sequi eos placeat et quia deleniti? Corrupti velit impedit autem et obcaecati fuga debitis nemo ratione iste veniam amet dicta hic ipsam unde cupiditate incidunt aut iure ipsum officiis soluta
+      temporibus. Tempore dicta ullam delectus numquam consectetur quisquam explicabo culpa excepturi placeat quo sequi molestias reprehenderit hic at nemo cumque voluptates quidem repellendus maiores unde earum molestiae ad.
+    </p>
+
+    <hr>    
+
+    <button id="testBottom">TEST</button>
+
+    <script type="text/javascript">
+      /*
+      console.dir(test);
+      console.log('offsetTop: '+test.offsetTop);
+      //console.log('offsetLeft: ' + test.offsetLeft);
+      console.log('scrollTop: ' + test.scrollTop);
+      //console.log('clientHeight: ' + test.clientHeight);
+      console.log('offsetHeight: ' + test.offsetHeight);
+      console.log('scrollHeight: '+test.scrollHeight);
+      //console.log('clientWidth: ' + test.clientWidth);
+      //console.log('offsetWidth: ' + test.offsetWidth);
+      */
+      let scroollBottom = test.scrollHeight - test.scrollTop - test.clientHeight;
+      console.log('scroollBottom: '+scroollBottom);
+
+      scroollBottom = testBottom.scrollHeight - testBottom.scrollTop - testBottom.clientHeight;
+      console.log('scroollBottom: '+scroollBottom);
+    </script>
+
+    <hr>
+
+    <script type="text/javascript">
+      let div = document.createElement('div');
+      div.style.overflowY = 'scroll';
+      div.style.width = '50px';
+      div.style.height = '50px';
+      //div.style.backgroundColor = 'green';
+      document.body.append(div);
+
+      let scrollBarWidth = div.offsetWidth - div.clientWidth;
+      console.log(scrollBarWidth);
+
+      div.remove();
+    </script>
+
+    <hr>
+
+    <style>
+      #field {
+        width: 200px;
+        border: 10px groove black;
+        background-color: #00FF00;
+        position: relative;
+      }
+
+      #ball {
+        position: absolute;
+        width: 40px;
+        height:  40px;
+      }
+    </style>
+
+    <div id="field">
+      <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    </div>
+
+    <script type="text/javascript">
+      console.dir(ball);
+      //console.dir(field);
+
+      ball.style.left = field.clientWidth/2 - ball.offsetWidth/2 + 'px';
+      ball.style.top = field.clientHeight/2 - ball.offsetHeight/2 + 'px';
+
+      /*
+      console.log(ball.offsetWidth);
+      console.log(ball.offsetHeight);
+      */
+    </script>
+
+  </body>
+</html>
