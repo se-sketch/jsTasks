@@ -84,7 +84,7 @@
 
   <style type="text/css">
     .note {
-      position: fixed;
+      position: absolute;
       z-index: 1000;
       padding: 5px;
       border: 1px solid black;
@@ -128,6 +128,19 @@
 
 
   <script>
+
+    // get document coordinates of the element
+    function getCoords(elem) {
+      let box = elem.getBoundingClientRect();
+
+      return {
+        top: box.top + window.pageYOffset,
+        right: box.right + window.pageXOffset,
+        bottom: box.bottom + window.pageYOffset,
+        left: box.left + window.pageXOffset
+      };
+    }
+
     /**
      * Positions elem relative to anchor as said in position.
      *
@@ -140,18 +153,28 @@
     function positionAt(anchor, position, elem) {
       // ... your code ...
 
-      let coordinates = anchor.getBoundingClientRect();
+      let coordinates = getCoords(anchor);
+      //let coordinates = anchor.getBoundingClientRect();
       //console.log(coordinates);
 
-      if (position == 'top'){
+      if (position == 'top' || position == 'top-out'){
         elem.style.left = coordinates.left + 'px';
         elem.style.top = coordinates.top - elem.offsetHeight + 'px';
-      }else if(position == 'right'){
+      }else if(position == 'right' || position == 'right-out'){
         elem.style.left = coordinates.right + 'px';
         elem.style.top = coordinates.top + 'px';
-      }else if(position == 'bottom'){
+      }else if(position == 'bottom' || position == 'bottom-out'){
         elem.style.left = coordinates.left + 'px';
         elem.style.top = coordinates.bottom + 'px';
+      }else if(position == 'top-in'){
+        elem.style.left = coordinates.left + 'px';
+        elem.style.top = coordinates.top + 'px';
+      }else if(position == 'right-in'){
+        elem.style.left = coordinates.right - elem.offsetWidth + 'px';
+        elem.style.top = coordinates.top + 'px';
+      }else if(position == 'bottom-in'){
+        elem.style.left = coordinates.left + 'px';
+        elem.style.top = coordinates.bottom - elem.offsetHeight+ 'px';
       }
     }
 
@@ -175,6 +198,12 @@
     showNote(blockquote, "top", "note above");
     showNote(blockquote, "right", "note at the right");
     showNote(blockquote, "bottom", "note below");
+  </script>
+
+  <script type="text/javascript">
+    showNote(blockquote, "top-in", "note above");
+    showNote(blockquote, "right-in", "note at the right");
+    showNote(blockquote, "bottom-in", "note below");
   </script>
 
 </body>

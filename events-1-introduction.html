@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+
+    <style>
+      #field {
+        width: 200px;
+        height: 150px;
+        border: 10px solid black;
+        background-color: #00FF00;
+        overflow: hidden;
+
+        position: relative;
+      }
+
+      #ball{
+        position: absolute;
+        transition: 1s all;
+
+        left: 0;
+        top: 0;
+        width: 40px;
+        height: 40px;
+      }
+    </style>
+
+  </head>
+
+  <body style="height:2000px">
+    <input type="button" id="hider" value="Click to hide the text" />
+
+    <div id="text">Text</div>
+
+    <script type="text/javascript">
+      hider.addEventListener('click', event => {
+        //text.hidden = true;
+        text.style.display = 'none';
+      });  
+    </script>
+
+    
+    <button id="clickToHide">Click to hide</button>
+
+    <script type="text/javascript">
+      let btn = document.querySelector('#clickToHide');  
+      /*
+      btn.addEventListener('click', event => {
+        btn.hidden = true;
+      });
+      */
+      btn.onclick = event => btn.hidden = true;
+    </script>
+
+
+    <hr>
+
+    <div id="field">
+      <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    </div>
+
+    <script type="text/javascript">
+      function getCoords(elem) {
+        let box = elem.getBoundingClientRect();
+
+        return {
+          top: box.top + window.pageYOffset,
+          right: box.right + window.pageXOffset,
+          bottom: box.bottom + window.pageYOffset,
+          left: box.left + window.pageXOffset
+        };
+      }
+      
+      field.addEventListener('click', event => {
+        //console.log([event.clientX, event.clientY]);
+
+        let left = event.clientX - field.offsetLeft - ball.offsetWidth/2 - field.clientTop;
+        let top = event.clientY - field.offsetTop - ball.offsetHeight/2 - field.clientLeft;
+
+        let maxLeft = field.clientWidth - ball.offsetWidth;
+        left = Math.min(left, maxLeft);
+        left = Math.max(left, 0);
+
+        let maxTop = field.clientHeight - ball.offsetHeight;
+        top = Math.min(top, maxTop);
+        top = Math.max(top, 0);
+
+        ball.style.left = left + 'px';
+        ball.style.top = top + 'px';
+      });
+
+    </script>
+
+  </body>
+</html>
