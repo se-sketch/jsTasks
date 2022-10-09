@@ -202,8 +202,12 @@ https://javascript.info/introduction-browser-events#summary
 events-1-introduction.html
 
 Move the ball across the field
+Create a sliding menu
 
+events-1-introduction-carousel.html
+Carousel
 
 ;
+
 
 

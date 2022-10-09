@@ -14,11 +14,12 @@
         overflow: hidden;
 
         position: relative;
+        cursor: pointer;
       }
 
       #ball{
         position: absolute;
-        transition: 1s all;
+        transition: all 1s;
 
         left: 0;
         top: 0;
@@ -26,6 +27,41 @@
         height: 40px;
       }
     </style>
+
+    <style type="text/css">
+      body {
+        margin: 10px auto;
+        width: 470px;
+      }
+
+      h3 {
+        margin: 0;
+        padding-bottom: .3em;
+        font-size: 1.1em;
+      }
+
+      p {
+        margin: 0;
+        padding: 0 0 .5em;
+      }
+
+      .pane {
+        background: #edf5e1;
+        padding: 10px 20px 10px;
+        border-top: solid 2px #c4df9b;
+      }
+
+      .remove-button {
+        font-size: 110%;
+        color: darkred;
+        right: 10px;
+        width: 24px;
+        height: 24px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+      }      
+    </style>    
 
   </head>
 
@@ -76,9 +112,16 @@
       
       field.addEventListener('click', event => {
         //console.log([event.clientX, event.clientY]);
+        /*
+        let left = event.clientX - field.offsetLeft - field.clientLeft- ball.offsetWidth/2;
+        let top = event.clientY - field.offsetTop - field.clientTop - ball.offsetHeight/2;
+        */
 
-        let left = event.clientX - field.offsetLeft - ball.offsetWidth/2 - field.clientTop;
-        let top = event.clientY - field.offsetTop - ball.offsetHeight/2 - field.clientLeft;
+        //fieldCoords = getCoords(field);
+        fieldCoords = field.getBoundingClientRect();
+        let left = event.clientX - fieldCoords.left - field.clientLeft - ball.offsetWidth/2;
+        let top = event.clientY - fieldCoords.top - field.clientTop - ball.offsetHeight/2;
+
 
         let maxLeft = field.clientWidth - ball.offsetWidth;
         left = Math.min(left, maxLeft);
@@ -92,6 +135,104 @@
         ball.style.top = top + 'px';
       });
 
+    </script>
+
+    <hr>
+
+    <style type="text/css">
+      .menu ul{
+        display: none;
+        margin: 0;
+        list-style: none;
+        padding-left: 20px;
+      }
+
+      .menu.open ul{
+        display: block;
+      }
+
+      .menu .title::before{
+        content: '▶';
+        font-size: 80%;
+        color: green;
+      }
+
+      .menu.open .title::before{
+        content: '▼';
+      }
+
+      .menu .title{
+        cursor: pointer;
+      }
+    </style>
+
+    <div class="menu">
+      <span class="title">
+        Sweeties (click me)!
+      </span>
+      <ul>
+        <li>Cake</li>
+        <li>Donut</li>
+        <li>Honey</li>
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+        let span = document.querySelector('.menu span.title');
+
+        span.addEventListener('click', event => {
+          document.querySelector('div.menu').classList.toggle('open');
+        });
+    </script>
+
+
+    <hr>
+
+
+    The button code (may need to adjust CSS):
+    <button class="remove-button">[x]</button>
+
+    <div>
+      <div class="pane">
+        <h3>Horse</h3>
+        <p>The horse is one of two extant subspecies of Equus ferus. It is an odd-toed ungulate mammal belonging to the taxonomic family Equidae. The horse has evolved over the past 45 to 55 million years from a small multi-toed creature, Eohippus, into the large, single-toed animal of today.</p>
+      </div>
+      <div class="pane">
+        <h3>Donkey</h3>
+        <p>The donkey or ass (Equus africanus asinus) is a domesticated member of the horse family, Equidae. The wild ancestor of the donkey is the African wild ass, E. africanus. The donkey has been used as a working animal for at least 5000 years.</p>
+      </div>
+      <div class="pane">
+        <h3>Cat</h3>
+        <p>The domestic cat (Latin: Felis catus) is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines. Cats are often valued by humans for companionship and for their ability to hunt vermin.
+        </p>
+      </div>
+    </div>    
+
+
+    <style type="text/css">
+      div.pane{
+        position: relative;
+      }  
+    </style>    
+
+    <script type="text/javascript">
+      let divParentPane = document.querySelector('div.pane').parentElement;
+      let listPane = divParentPane.querySelectorAll('div.pane');  
+      for(let div of listPane){
+        let btnRm = document.createElement('button');
+        btnRm.className = 'remove-button';
+        btnRm.style.position = 'absolute';
+        btnRm.style.right = '10px';
+        btnRm.style.top = '0px';
+        btnRm.innerText = '[x]';
+        div.append(btnRm);
+      }
+      
+      divParentPane.addEventListener('click', event => {
+        if (event.target.tagName == 'BUTTON' && event.target.className == 'remove-button'){
+          event.target.closest('div.pane').remove();
+        }
+      });
     </script>
 
   </body>
