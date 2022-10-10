@@ -78,6 +78,14 @@
 
     <hr>
 
+      <style type="text/css">
+        .tree span{
+          cursor: pointer;
+        }
+        .tree span:hover{
+          font-weight: bold;
+        }
+      </style>
 
       <ul class="tree" id="tree">
           <li>Animals
@@ -121,17 +129,167 @@
 
         let listLi = tree.querySelectorAll('li');
         for (let li of listLi) {
+          let span = document.createElement('span');
+          li.prepend(span);
+          span.append(span.nextSibling);
+          /*
           let textContent = li.firstChild.textContent.trim();
           li.firstChild.textContent = '';
           li.insertAdjacentHTML('afterbegin', '<span>'+textContent+'</span>');
+          */
         }
 
         tree.addEventListener('click', event => {
           if (event.target.tagName != 'SPAN') return;
-          let ul = event.target.nextElementSibling;
-          if (ul && ul.tagName == 'UL') ul.hidden = !ul.hidden;
+          //let ul = event.target.nextElementSibling;
+          //if (ul && ul.tagName == 'UL') ul.hidden = !ul.hidden;
+
+          let ul = event.target.parentNode.querySelector('ul');
+          if (ul) ul.hidden = !ul.hidden;
         });
       </script>
+
+      <hr>
+
+      <style type="text/css">
+        th{
+          cursor: pointer;
+        }
+        th:hover{
+          background-color: yellow;
+        }
+        table, th, td{
+          border: solid 1px;
+          border-collapse: collapse;
+        }
+      </style>
+
+      <table id="grid">
+        <thead>
+          <tr>
+            <th data-type="number">Age</th>
+            <th data-type="string">Name</th>
+          </tr>
+        </thead>
+    
+        <tbody>
+          <tr>
+            <td>5</td>
+            <td>John</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Pete</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Ann</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Eugene</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Ilya</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <script type="text/javascript">
+
+        function sortingTable(table, cellIndex, type){
+
+          let rows = Array.from(table.tBodies[0].rows).sort((rowA, rowB) => {
+            let valueA = rowA.cells[cellIndex].textContent;
+            let valueB = rowB.cells[cellIndex].textContent;
+
+            if (type == 'number') return Number(valueA) - Number(valueB);
+
+            return valueA.localeCompare(valueB);
+          });
+
+          table.tBodies[0].append(...rows);
+        } 
+
+        grid.addEventListener('click', event => {
+          if (event.target.tagName != 'TH') return;
+          sortingTable(grid, event.target.cellIndex, event.target.dataset.type);
+        });
+      </script>
+
+      <hr>
+
+      <button data-tooltip="the tooltip is longer than the element">Short button</button>
+      <button data-tooltip="HTML<br>tooltip">One more button</button>
+
+      <style type="text/css">
+        .tooltip {
+          position: fixed;
+          padding: 10px 20px;
+          border: 1px solid #b3c9ce;
+          border-radius: 4px;
+          text-align: center;
+          font: italic 14px/1.3 sans-serif;
+          color: #333;
+          background: #fff;
+          box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+        }
+      </style>
+
+      <script type="text/javascript">
+
+        document.addEventListener('mouseover', event => {
+          let target = event.target;
+          if (target.tagName == 'BUTTON' && 'tooltip' in target.dataset){
+            let tooltip = target.dataset.tooltip;
+
+            let coords = target.getBoundingClientRect();
+
+            let div = document.createElement('div');
+            div.innerHTML = tooltip;
+            div.className = 'tooltip';
+            document.body.append(div);
+
+            let left = coords.left + target.offsetWidth/2 - div.offsetWidth/2;
+            if (left < 10) left = coords.left;
+
+            div.style.left = left + 'px';
+
+            let top = coords.top - div.offsetHeight - 10;
+            if (top < 0) top = coords.bottom + 10;
+
+            div.style.top = top + 'px';
+          }
+        });
+
+        document.addEventListener('mouseout', event => {
+          if (event.target.tagName == 'BUTTON' && 'tooltip' in event.target.dataset){
+            let div = document.querySelector('div.tooltip');
+            if (div) div.remove();
+          }
+        });
+      </script>
+
+      <br>
+      <hr>
+      <br>
+      <hr>
+      <br>
+      <hr>
+      <br>
+
+        <p>The domestic cat (Latin: Felis catus) is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines. Cats are often valued by humans for companionship and for their ability to hunt vermin.
+        </p>
+
+        <p>The domestic cat (Latin: Felis catus) is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines. Cats are often valued by humans for companionship and for their ability to hunt vermin.
+        </p>
+
+        <p>The domestic cat (Latin: Felis catus) is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines. Cats are often valued by humans for companionship and for their ability to hunt vermin.
+        </p>
+
+        <p>The domestic cat (Latin: Felis catus) is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines. Cats are often valued by humans for companionship and for their ability to hunt vermin.
+        </p>
 
   </body>
 </html>

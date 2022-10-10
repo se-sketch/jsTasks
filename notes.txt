@@ -209,5 +209,17 @@ Carousel
 
 ;
 
+https://javascript.info/event-delegation
+events-3-event-delegation.html
+
+Tooltip behavior
+;
+
+https://javascript.info/default-browser-action#summary
+events-4-browser-default-actions.html
+
+Why "return false" doesn't work?
+
+
 
 
