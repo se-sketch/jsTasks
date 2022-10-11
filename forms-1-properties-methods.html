@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+  </head>
+
+  <body>
+    
+    <select id="genres">
+      <option value="rock">Rock</option>
+      <option value="blues" selected>Blues</option>
+    </select>
+
+    <script type="text/javascript">
+
+      genres.addEventListener('click', event => {
+        let selectedOption = event.target.selectedOptions[0];
+        let value = selectedOption.value;
+        let text = selectedOption.innerText;
+
+        console.log('value: ' + value + ' ; text: '+text);
+      });
+
+      
+      let newOption = new Option("Classic", "classic");
+      genres.append(newOption);
+
+      newOption.selected = true;
+
+    </script>
+
+  </body>
+</html>

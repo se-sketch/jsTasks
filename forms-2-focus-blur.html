@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+
+    <style type="text/css">
+      .view,
+      .edit {
+        height: 150px;
+        width: 400px;
+        font-family: sans-serif;
+        font-size: 14px;
+        display: block;
+      }
+
+      .view {
+        /* padding + border = 3px */
+        padding: 2px;
+        border: 1px solid black;
+      }
+
+      .edit {
+        /* replace padding with border (still 3px not to shift the contents) */
+        border: 3px solid blue;
+        padding: 0px;
+      }
+
+      .edit:focus {
+        /* remove focus border in Safari */
+        outline: none;
+      }      
+    </style>
+  </head>
+
+  <body>
+
+    <ul>
+      <li>Click the div to edit.</li>
+      <li>Enter or blur saves the result.</li>
+    </ul>
+
+    HTML is allowed.
+
+    <div id="view" class="view">Text</div>
+
+    <script>
+      // ...your code...
+      // Note: <textarea> should have class="edit"
+      // my.css has styles to make it the same size as div
+
+      function textAreaBlur(){
+        let textArea = document.querySelector('textarea.edit');
+        if (!textArea) return;
+
+        let div = document.createElement('div');
+        div.id = 'view';
+        div.className = 'view';
+        div.innerHTML = textArea.value;
+        div.onfocus = viewOnFocus;
+        div.tabIndex = 0;
+
+        textArea.replaceWith(div);
+      }
+
+      function viewOnFocus(){
+        let textArea = document.createElement('textarea');
+        textArea.innerHTML = event.target.innerHTML;
+        textArea.className = 'edit';
+
+        view.replaceWith(textArea);
+        textArea.focus();
+
+        textArea.onblur = textAreaBlur;
+        textArea.onkeypress = event => {
+          if (event.key == 'Enter') textArea.blur();
+        }
+      }
+
+      view.tabIndex = 0;
+      view.onfocus = viewOnFocus;
+      
+    </script>
+
+
+    <hr>
+
+    <style type="text/css">
+      /* common styles for the table, no need to modify these */
+
+      th {
+        text-align: center;
+        font-weight: bold;
+      }
+
+      td {
+        width: 150px;
+        white-space: nowrap;
+        text-align: center;
+        vertical-align: middle;
+        padding: 10px;
+      }
+
+      .nw {
+        background-color: #999;
+      }
+
+      .n {
+        background-color: #03f;
+        color: #fff;
+      }
+
+      .ne {
+        background-color: #ff6;
+      }
+
+      .w {
+        background-color: #ff0;
+      }
+
+      .c {
+        background-color: #60c;
+        color: #fff;
+      }
+
+      .e {
+        background-color: #09f;
+        color: #fff;
+      }
+
+      .sw {
+        background-color: #963;
+        color: #fff;
+      }
+
+      .s {
+        background-color: #f60;
+        color: #fff;
+      }
+
+      .se {
+        background-color: #0c3;
+        color: #fff;
+      }      
+    </style>
+
+
+    <p>Click on a table cell to edit it. Press OK or CANCEL when you finish.</p>
+
+    <table id="bagua-table">
+      <tr>
+        <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
+      </tr>
+      <tr>
+        <td class="nw"><strong>Northwest</strong>
+          <br>Metal
+          <br>Silver
+          <br>Elders
+        </td>
+        <td class="n"><strong>North</strong>
+          <br>Water
+          <br>Blue
+          <br>Change
+        </td>
+        <td class="ne"><strong>Northeast</strong>
+          <br>Earth
+          <br>Yellow
+          <br>Direction
+        </td>
+      </tr>
+      <tr>
+        <td class="w"><strong>West</strong>
+          <br>Metal
+          <br>Gold
+          <br>Youth
+        </td>
+        <td class="c"><strong>Center</strong>
+          <br>All
+          <br>Purple
+          <br>Harmony
+        </td>
+        <td class="e"><strong>East</strong>
+          <br>Wood
+          <br>Blue
+          <br>Future
+        </td>
+      </tr>
+      <tr>
+        <td class="sw"><strong>Southwest</strong>
+          <br>Earth
+          <br>Brown
+          <br>Tranquility
+        </td>
+        <td class="s"><strong>South</strong>
+          <br>Fire
+          <br>Orange
+          <br>Fame
+        </td>
+        <td class="se"><strong>Southeast</strong>
+          <br>Wood
+          <br>Green
+          <br>Romance
+        </td>
+      </tr>
+
+    </table>
+
+
+    <script type="text/javascript">
+      let table = document.querySelector('#bagua-table');
+      table.addEventListener('click', event => {
+        let td = event.target.closest('td');
+        if (!td || !table.contains(td)) return;
+
+        let textArea = document.createElement('textarea');
+        textArea.value = td.innerHTML;
+
+        td.innerHTML = '';
+        td.append(textArea);
+
+        //td.style.width = '100%';
+        //td.style.height = '100%';
+
+        //console.dir(td);
+
+      });
+
+    </script>
+
+
+    <hr>
+    <br><br>
+    <hr>
+    <br><br>
+
+  </body>
+</html>
