@@ -287,7 +287,11 @@
       }
 
       function finishEditing(isOk){
+          /*
           let divControls = document.querySelector('#bagua-table div.edit-controls');
+          if (divControls) divControls.remove();
+          */
+
           //let textarea = document.querySelector('#bagua-table textarea.edit-area');
           let textarea = editTd.elem.querySelector('textarea.edit-area');
 
@@ -297,8 +301,6 @@
             editTd.elem.innerHTML = editTd.data;
           }
           textarea.remove();
-          
-          if (divControls) divControls.remove();
 
           editTd.elem.classList.remove('edit-td');
           editTd = null;
