@@ -220,6 +220,14 @@ events-4-browser-default-actions.html
 
 Why "return false" doesn't work?
 
+;
+
+https://javascript.info/focus-blur#tasks
+forms-2-focus-blur.html
+
+Edit TD on click
+
+;
 
 
 
