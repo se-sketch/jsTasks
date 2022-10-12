@@ -148,6 +148,33 @@
 
     <p>Click on a table cell to edit it. Press OK or CANCEL when you finish.</p>
 
+    <style type="text/css">
+      .edit-td .edit-area {
+        border: none;
+        margin: 0;
+        padding: 0;
+        display: block;
+
+        /* remove resizing handle in Firefox */
+        resize: none;
+
+        /* remove outline on focus in Chrome */
+        outline: none;
+
+        /* remove scrollbar in IE */
+        overflow: auto;
+      }
+
+      .edit-controls {
+        position: absolute;
+      }
+
+      .edit-td {
+        position: relative;
+        padding: 0;
+      }      
+    </style>
+
     <table id="bagua-table">
       <tr>
         <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
@@ -203,27 +230,61 @@
           <br>Romance
         </td>
       </tr>
-
     </table>
 
-
     <script type="text/javascript">
+      let editTd;
       let table = document.querySelector('#bagua-table');
       table.addEventListener('click', event => {
+        if (editTd) return;
         let td = event.target.closest('td');
         if (!td || !table.contains(td)) return;
 
-        let textArea = document.createElement('textarea');
-        textArea.value = td.innerHTML;
+        editTd = td;
 
+        let innerHTML = td.innerHTML;
+
+        let textArea = document.createElement('textarea');
+        textArea.style.width = td.clientWidth + 'px';
+        textArea.style.height = td.clientHeight + 'px';
+        textArea.className = 'edit-area';
+        textArea.value = innerHTML;
+
+        td.classList.add('edit-td');
         td.innerHTML = '';
         td.append(textArea);
 
-        //td.style.width = '100%';
-        //td.style.height = '100%';
+        let divControls = document.createElement('div');
+        divControls.style.display = 'inline';
+        divControls.className = 'edit-controls';
 
-        //console.dir(td);
+        let btnOk = document.createElement('button');
+        btnOk.innerText = 'OK';
+        btnOk.style.marginRight = '2px';
 
+        let btnCancel = document.createElement('button');
+        btnCancel.innerText = 'Cancel';
+
+        divControls.append(btnOk);
+        divControls.append(btnCancel);
+
+        td.append(divControls);
+
+        divControls.style.left = td.offsetWidth/2 - divControls.offsetWidth/2 + 'px';
+
+        btnOk.addEventListener('click', event => {
+          td.innerHTML = textArea.value;
+          textArea.remove();
+          divControls.remove();
+          editTd = null;
+        });
+
+        btnCancel.addEventListener('click', event => {
+          td.innerHTML = innerHTML;
+          textArea.remove();
+          divControls.remove();
+          editTd = null;
+        });
       });
 
     </script>
