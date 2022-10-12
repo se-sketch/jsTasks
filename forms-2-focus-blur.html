@@ -233,26 +233,38 @@
     </table>
 
     <script type="text/javascript">
+      // .edit-cancel,.edit-ok  // .edit-area // .edit-td // edit-controls
       let editTd;
       let table = document.querySelector('#bagua-table');
       table.addEventListener('click', event => {
-        if (editTd) return;
-        let td = event.target.closest('td');
-        if (!td || !table.contains(td)) return;
+        let elem = event.target.closest('.edit-cancel,.edit-ok,td');
+        if (!table.contains(elem)) return;
 
-        editTd = td;
+        if(elem.tagName == 'BUTTON' && elem.className == 'edit-ok'){
+          finishEditing(true);
+        }else if(elem.tagName == 'BUTTON' && elem.className == 'edit-cancel'){
+          finishEditing(false);
+        }else if(elem.tagName == 'TD'){
+          if (editTd) return;
+          makeTdEditable(elem);
+        }
+      });
 
-        let innerHTML = td.innerHTML;
+      function makeTdEditable(td){
+        editTd = {
+          'elem' : td,
+          'data' : td.innerHTML,
+        }
 
-        let textArea = document.createElement('textarea');
-        textArea.style.width = td.clientWidth + 'px';
-        textArea.style.height = td.clientHeight + 'px';
-        textArea.className = 'edit-area';
-        textArea.value = innerHTML;
+        let textarea = document.createElement('textarea');
+        textarea.value = td.innerHTML;
+        textarea.className = 'edit-area';
+        textarea.style.width = td.clientWidth + 'px';
+        textarea.style.height = td.clientHeight + 'px';
 
-        td.classList.add('edit-td');
         td.innerHTML = '';
-        td.append(textArea);
+        td.classList.add('edit-td');
+        td.append(textarea);
 
         let divControls = document.createElement('div');
         divControls.style.display = 'inline';
@@ -260,33 +272,37 @@
 
         let btnOk = document.createElement('button');
         btnOk.innerText = 'OK';
-        btnOk.style.marginRight = '2px';
+        btnOk.className = 'edit-ok';
+        btnOk.style.marginRight = '1px';
+        divControls.append(btnOk);
 
         let btnCancel = document.createElement('button');
         btnCancel.innerText = 'Cancel';
-
-        divControls.append(btnOk);
+        btnCancel.className = 'edit-cancel';
         divControls.append(btnCancel);
 
         td.append(divControls);
 
-        divControls.style.left = td.offsetWidth/2 - divControls.offsetWidth/2 + 'px';
+        divControls.style.left = td.clientWidth/2 - divControls.offsetWidth/2 + 'px';
+      }
 
-        btnOk.addEventListener('click', event => {
-          td.innerHTML = textArea.value;
-          textArea.remove();
-          divControls.remove();
+      function finishEditing(isOk){
+          let divControls = document.querySelector('#bagua-table div.edit-controls');
+          //let textarea = document.querySelector('#bagua-table textarea.edit-area');
+          let textarea = editTd.elem.querySelector('textarea.edit-area');
+
+          if (isOk){
+            editTd.elem.innerHTML = textarea.value;
+          }else{
+            editTd.elem.innerHTML = editTd.data;
+          }
+          textarea.remove();
+          
+          if (divControls) divControls.remove();
+
+          editTd.elem.classList.remove('edit-td');
           editTd = null;
-        });
-
-        btnCancel.addEventListener('click', event => {
-          td.innerHTML = innerHTML;
-          textArea.remove();
-          divControls.remove();
-          editTd = null;
-        });
-      });
-
+      }
     </script>
 
 
