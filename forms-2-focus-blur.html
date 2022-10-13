@@ -313,5 +313,66 @@
     <hr>
     <br><br>
 
+      <style>
+        #mouse {
+          display: inline-block;
+          cursor: pointer;
+          margin: 0;
+        }
+
+        #mouse:focus {
+          outline: 1px dashed black;
+        }
+      </style>
+
+      <p>Click on the mouse and move it with arrow keys.</p>
+
+      <pre id="mouse">
+     _   _
+    (q\_/p)
+     /. .\
+    =\_t_/=   __
+     /   \   (
+    ((   ))   )
+    /\) (/\  /
+    \  Y  /-'
+     nn^nn
+    </pre>
+
+
+      <script>
+        // ...your code...
+        mouse.tabIndex = 0;
+
+        mouse.addEventListener('click', event => {
+          let coords = mouse.getBoundingClientRect();
+          mouse.style.left = coords.left + 'px';
+          mouse.style.top = coords.top + 'px';
+          mouse.style.position = 'fixed';
+        });
+
+        mouse.addEventListener('keydown', event => {
+          if (!event.key.startsWith('Arrow')) return;
+
+          let coords = mouse.getBoundingClientRect();
+
+          if(event.key == 'ArrowRight'){
+            mouse.style.left = coords.left + 20+ 'px';
+          }else if(event.key == 'ArrowLeft'){
+            mouse.style.left = coords.left - 20+ 'px';
+          }else if(event.key == 'ArrowUp'){
+            mouse.style.top = coords.top - 20 + 'px';
+          }else if(event.key == 'ArrowDown'){
+            mouse.style.top = coords.top + 20 + 'px';
+          }
+        });
+      </script>
+
+    <hr>
+    <br><br>
+    <hr>
+    <br><br>
+
+
   </body>
 </html>
