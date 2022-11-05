@@ -465,16 +465,46 @@
       */
 
       function example_JS_20(arr){
+        let result = {};
 
         arr.forEach((item) => {
-          console.log(typeof item);
-        });
+          let key = typeof item;
 
+          if (key in result){
+            result[key].push(item);
+          }else{
+            result[key] = [item];
+          }
+        });
+        return result;
       }
 
       console.log('---------');
 
-      example_JS_20(['a', 1, 2, false, 'b']);
+      console.log(example_JS_20(['a', 1, 2, false, 'b']));
+
+      //--------------
+      /*
+      Практика JS 21.
+      Дано рядок, що складається з букв a, b, c. Ваше завдання змінити розташування літер a та b, але не чіпати c.
+
+      Приклад коду:
+         switcheroo('abc') =>'bac'
+         switcheroo('aaabcccbaaa') =>'bbbacccabbb'
+         switcheroo('ccccc') =>'ccccc'
+         switcheroo('acb') =>'bca'
+         switcheroo('aabacbaa') =>'bbabcabb'      
+      */
+
+      function switcheroo(str){
+        return str.split('').map(item => (item == 'a') ? 'b' : (item == 'b') ? 'a' : item).join('');
+      }
+
+      console.log(switcheroo('abc')); //  =>'bac'
+      console.log(switcheroo('aaabcccbaaa')); //  =>'bbbacccabbb'
+      console.log(switcheroo('ccccc')); //  =>'ccccc'
+      console.log(switcheroo('acb')); //  =>'bca'
+      console.log(switcheroo('aabacbaa')); //  =>'bbabcabb'      
 
     </script>
 
